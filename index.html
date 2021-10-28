@@ -1,0 +1,49 @@
+<html>
+<head>
+    <title>Request file dengan Ajax</title>
+    <script language = "javascript">
+        var XMLHttpRequestObject=false;
+            if (window.XMLHttpRequest) {
+            XMLHttpRequestObject = new XMLHttpRequest();
+            } 
+            else if (window.ActiveXObject) {
+                XMLHttpRequestObject = new ActiveXObject("Microsoft.XMLHttp");
+            }
+            function getdata(url,divhasil) {
+                if (XMLHttpRequestObject) {
+                    var obj = document.getElementById(divhasil);
+                    XMLHttpRequestObject.open("GET", url);
+                    XMLHttpRequestObject.onreadystatechange = function() {
+                        if (XMLHttpRequestObject.readyState == 4 && 
+
+                        XMLHttpRequestObject.status == 200) {
+                            obj.innerHTML = XMLHttpRequestObject.responseText;
+                        }
+                     }
+                    XMLHttpRequestObject.send(null);
+                }
+            }
+    </script>
+    <style>
+        
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+    <center>
+        <h1>Mengambil data dari file HTML</h1>
+        <br>
+        <br>
+        <form>
+            <input type="button" class="btn btn-primary" value="Tampilkan Kata Motivasi" onclick="getdata('tampil.html','divhasil')">
+            <input type="button" class="btn btn-primary" value="Tampilkan Kata-kata sendiri" onclick="getdata('katakatasendiri.html','divhasil')">
+        </form>
+        <div id="divhasil">
+            <span>Tekan button diatas!!! Untuk mengganti pesan ini!!</span>
+        </div>
+    </center>
+</body>
+</html>
